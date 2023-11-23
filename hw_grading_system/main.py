@@ -10,14 +10,6 @@ DATA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__),"..")) + "/da
 SAVE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__),"..")) + "/result/"
 SCORE_SHEET_PAHT = SAVE_PATH + "score_sheet.csv"
 
-PROCESS_FUNC_DICT = dict(
-    compile = compile_file,
-    test = test,
-    display_test_result = display_test_result,
-    display_source_code = display_source_code,
-    record_score = record_score,
-)
-
 def compile_file(file_loader):
     if file_loader.file_type != "c":
         print(" -> This file can't compile. Please check the file type")
@@ -110,6 +102,8 @@ def record_score(file_loader, score_sheet_path):
         print(" -> Score recorded !")
     input("Press 'Enter' go back to main menu")
 
+
+
 def run(process, kwargs):
     process(**kwargs)
 
@@ -129,7 +123,18 @@ def main():
     database = Database(DATA_PATH)
     file_loader = FileLoader()
     ui = UI()
-    tester = Tester() 
+    tester = Tester()
+
+    # process functions
+    process_func_dict = dict(
+        compile = compile_file,
+        test = test,
+        display_test_result = display_test_result,
+        display_source_code = display_source_code,
+        record_score = record_score,
+    )
+
+    # process args
     process_args_dict = dict(
         compile = {
             "file_loader": file_loader, 
@@ -147,7 +152,7 @@ def main():
         },
         record_score = {
             "file_loader": file_loader,
-            "score_sheet_path": score_sheet_path,
+            "score_sheet_path": SCORE_SHEET_PAHT,
         },
     )
 
@@ -179,9 +184,9 @@ def main():
                         continue
                 
                 # run the process which user choose
-                process = PROCESS_FUNC_DICT[user_input]
+                process_func = process_func_dict[user_input]
                 progess_args = process_args_dict[user_input]
-                run(process, progess_args)
+                run(process_func, progess_args)
 
 if __name__ == '__main__':
     main()
