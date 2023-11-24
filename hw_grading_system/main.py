@@ -7,8 +7,8 @@ from data import Database, FileLoader
 from tester import Tester
 from user_interface import UI, EXIT_KEY
 
-DATA_PATH = os.path.dirname(__file__) + "/data/"
-SAVE_PATH = os.path.dirname(__file__) + "/result/"
+DATA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__),"..")) + "/data/"
+SAVE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__),"..")) + "/result/"
 SCORE_SHEET_PAHT = SAVE_PATH + "score_sheet.csv"
 
 def compile_file(file_loader):
@@ -134,6 +134,22 @@ def run(process, kwargs):
     process(**kwargs)
 
 def main():
+    # check directory data/ exist or not
+    if not os.path.isdir(DATA_PATH):
+        print(" >> There's no data/ directory. Please run setup.py")
+        exit()
+
+    # check directory data/ exist or not
+    if not os.path.isdir(SAVE_PATH):
+        print(" >> There's no result/ directory. Please run setup.py")
+        exit()
+
+    # check is there has data inside data/ or not
+    if len(os.listdir(DATA_PATH)) == 0:
+        print(" >> Please put your data into data/ directory.")
+        print(" >> After that restart the program again")
+        exit()
+
     print("\n >> Welcome to homework grading system!")
     TA_name = ""
     TA_student_id = ""
@@ -150,27 +166,11 @@ def main():
 
     date = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime())
 
-    # check directory result/ exist or not
-    if not os.path.isdir(SAVE_PATH):
-        print(" >> Created result/ directory for saving score sheet")
-        os.mkdir(SAVE_PATH)
-
     # record TA name and student id into score sheet
     with open(SCORE_SHEET_PAHT, "a", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["TA name", TA_name, "TA student ID", TA_student_id, "Date", date])
         writer.writerow([ "Filename", "Student ID", "Score"])
-
-    # check directory data/ exist or not
-    if not os.path.isdir(DATA_PATH):
-        print(" >> Created data/ directory for saving score sheet")
-        os.mkdir(DATA_PATH)
-
-    # check is there has data inside data/ or not
-    if len(os.listdir(DATA_PATH)) == 0:
-        print(" >> Please put your data inside data/ directory.")
-        print(" >> After that restart the program again")
-        exit()
 
     # set up
     database = Database(DATA_PATH)
