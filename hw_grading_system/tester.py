@@ -66,6 +66,5 @@ class Tester():
                 test_case = f.read()
             print("==================     Answer       ==================")
             print(test_case)
-            # input(" >> Press 'Enter' to go back to test menu")
         except:
             print(" >> Test answer not exsist")

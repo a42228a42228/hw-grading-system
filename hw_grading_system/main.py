@@ -34,10 +34,10 @@ def compile_file(file_loader):
         file_loader.executable_file_path = output_file
     input(" >> Press 'Enter' go back to main menu")
 
-def test(file_loader, tester, ui, idx, total_files_num):
+def test(file_loader, tester, ui, total_files_num):
     while True:
         # display choose homework UI
-        ui.display_text("test_display", **{"filename": file_loader.filename, "student_id": file_loader.student_id, "file_type": file_loader.file_type,  "idx": idx + 1, "total_files_num": total_files_num})
+        ui.display_text("test_display", **{"filename": file_loader.filename, "student_id": file_loader.student_id, "file_type": file_loader.file_type,  "idx": file_loader.idx + 1, "total_files_num": total_files_num})
 
         # get test version
         test_input = ui.get_input("test_input")
@@ -61,7 +61,9 @@ def test(file_loader, tester, ui, idx, total_files_num):
                 tester.run_auto_test(file_loader, test_case)
                 tester.show_answer(test_input)
                 break
+            # TODO: implement "manual_test" in Tester
             elif test_type == "manual_test":
+                print(" >> Sorry manual input test is not implement now. You have to test it outside this system by yourself...")
                 break
             elif test_type == "back":
                 break
@@ -177,7 +179,6 @@ def main():
             "file_loader": file_loader, 
             "tester": tester,
             "ui": ui,
-            "idx": idx,
             "total_files_num": total_files_num,
         },
         display_test_result = {
@@ -193,10 +194,10 @@ def main():
     )
 
     while idx < total_files_num:
-        file_loader.load_file(database[idx]["file_path"], database[idx]["student_id"])
+        file_loader.load_file(database[idx]["file_path"], database[idx]["student_id"], idx)
         while True:
             # display choosing mode UI
-            ui.display_text("mode_display", **{"filename": file_loader.filename, "file_type": file_loader.file_type, "student_id": file_loader.student_id, "idx": idx + 1, "total_files_num": total_files_num})
+            ui.display_text("mode_display", **{"filename": file_loader.filename, "file_type": file_loader.file_type, "student_id": file_loader.student_id, "idx": file_loader.idx + 1, "total_files_num": total_files_num})
 
             # control main menu
             user_input = ui.get_input("mode_input")
@@ -210,7 +211,8 @@ def main():
                 input(" >> Please input valid number. Press 'Enter' go back to main menu")
                 continue
             if user_input == "exit":
-                print("\n !!! Warning: Make sure you score all of the file !!! In this version you can't restart to score files !!! \n ")
+                print("\n !!! Warning: Make sure you score all of the file !!!")
+                print(" !!! In this version if you quit in the middle of scoring, you have to restart from first file!!! \n ")
                 exit_check = input(" >> Do you really want to exit? yes(y) / no(n): ")
                 if exit_check == 'y':
                     print(" >> Exit Successfully")

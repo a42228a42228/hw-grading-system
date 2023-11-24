@@ -78,9 +78,10 @@ class Database():
             raise ValueError(f'Unsupported file type: {file_type}')
 
 class FileLoader():    
-    def load_file(self, file_path, student_id):
+    def load_file(self, file_path, student_id, idx):
         self.file_path = file_path
         self.student_id = student_id
+        self.idx = idx
         self.filename = os.path.basename(file_path)
         self.file_type = self.split_file_type(self.filename)
         self.executable_file_path = None
