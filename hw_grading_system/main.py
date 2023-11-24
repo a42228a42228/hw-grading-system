@@ -133,9 +133,21 @@ def run(process, kwargs):
     process(**kwargs)
 
 def main():
-    # get name for record score
-    TA_name = input("Please Enter your name: ")
-    TA_student_id = input("Please Enter your student ID: ")
+    print("\n >> Welcome to homework grading system!")
+    TA_name = ""
+    TA_student_id = ""
+    # get name and student for record score
+    while True:
+        if TA_name == "":
+            TA_name = input(" >> Please Enter your name: ")
+            # print(" >> Please Enter you name")
+            continue
+        if TA_student_id == "":
+            TA_student_id = input(" >> Please Enter your student ID: ")
+            continue
+        if TA_name != "" and TA_student_id != "":
+            break
+
     date = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime())
 
     # record TA name and student id into score sheet
@@ -205,12 +217,16 @@ def main():
                 continue
             if user_input == "exit":
                 print("\n !!! Warning: Make sure you score all of the file !!! In this version you can't restart to score files !!! \n ")
-                exit_check = input(" >> Do you really want to exit? 1) yes, 2) no: ")
-                if exit_check == '1':
+                exit_check = input(" >> Do you really want to exit? yes(y) / no(n): ")
+                if exit_check == 'y':
                     print(" >> Exit Successfully")
                     exit()
-                else:
+                elif exit_check == 'n':
                     continue
+                else:
+                    input(" >> Please input valid number. Press 'Enter' go back to main menu")
+                    continue
+
             
             # run the process which user choose
             process_func = process_func_dict[user_input]

@@ -6,20 +6,20 @@ EXIT_KEY = "\x1b"
 
 MODE_UI_DISPLAY_TEXT = """
 =====================================================
-                    MAIN    MENU
+                    MAIN    MENU                   
 =====================================================
                 ---   {idx}  /  {total_files_num}   ---
 - FILENAME: {filename} / FILETYPE: .{file_type}
-- STUDENT ID: {student_id} 
+- STUDENT ID: {student_id}
 - MODE:
     1) Compile file
-    2) Test file
-    3) Display test result
-    4) Display source file
-    5) Record score
+    2) Test file                                     
+    3) Display test result                           
+    4) Display source file                           
+    5) Record score                                  
 =====================================================
 <- pre file          exit(ESC)           next file ->
-=====================================================
+======================================================
 """
 
 TEST_UI_DISPLAY_TEXT = """
