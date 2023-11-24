@@ -15,7 +15,7 @@
    ```
 2. Setup environment 
    ```sh
-   python hw-grading-system/setup.py
+   python ./hw-grading-system/setup.py
    ```
 3. Add files into `data/`
 
@@ -24,7 +24,7 @@
 
 Run the programe
    ```sh
-   python hw-grading-system/hw_grading_system/main.py
+   python ./hw-grading-system/hw_grading_system/main.py
    ```
 
 ## Features
