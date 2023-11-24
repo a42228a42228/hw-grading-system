@@ -22,26 +22,32 @@ class Database():
         if not os.path.isdir(dir_path):
             print(f"No such directory: {dir_path}")
             return
-
+        
+        # decompress files
         self._decompression_files(dir_path)
+
         # get all submission file directory path
         dirs = [dir_path + "/" + dir for dir in os.listdir(dir_path) if dir.endswith(FILE_SUBMISSION_DIRECTORY)]
         dirs.sort()
-        # collate files from submission file directory
+
+        # collate files from each submission file directory
         data = []
         for dir in dirs:
+            # get student ID from directory name
             student_id = dir.split("/")[-1].split(" ")[0]
-            homework_files = self._explore_files(dir)
-            data.append({"student_id": student_id, "homework_files": homework_files})
+            file_path_list = self._explore_files(dir)
+            # refine data in directory
+            dir_data = [{"student_id": student_id, "file_path": file_path} for file_path in file_path_list]
+            data += dir_data
         return data
 
     def _explore_files(self, dir):
-        homework_files = []
+        file_path_list = []
         for root, _, files in os.walk(dir):
             for file in files:
                 file_path = os.path.join(root, file)
-                homework_files.append(file_path)
-        return homework_files
+                file_path_list.append(file_path)
+        return file_path_list
 
     def _decompression_files(self, dir):
         for root, _, files in os.walk(dir):
