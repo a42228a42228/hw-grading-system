@@ -96,34 +96,25 @@ def record_score(file_loader, score_sheet_path):
         return
     else:
         file_loader.score = score
-    
-    
-    with open(score_sheet_path, "r", encoding="utf-8") as f:
-        next(f)
-        reader = csv.DictReader(f)
-        content = [row for row in reader]
-    
-    # update score
-    for row in content:
-        # check if the score of filename already exist or not
-        if file_loader.filename == row["Filename"] and file_loader.student_id == row["Student_id"]:
-            row["Score"] = file_loader.score
-            with open(score_sheet_path, "a", encoding="utf-8") as f:
-                next(f)
-                writer = csv.writer(f)
-                writer.write(reader)
-            break
 
-    
+    # TODO: If the score sheet already has score on it, make user to choose cover it or not   
+    # with open(score_sheet_path, "r", encoding="utf-8") as f:
+    #     next(f)
+    #     reader = csv.DictReader(f)
+    #     content = [row for row in reader]
+    # update score
+    # for row in content:
+    #     # check if the score of filename already exist or not
+    #     if file_loader.filename == row["Filename"] and file_loader.student_id == row["Student ID"]:
+    #         row["Score"] = file_loader.score
+    #         with open(score_sheet_path, "a", encoding="utf-8") as f:
+    #             next(f)
+    #             writer = csv.writer(f)
+    #             writer.write(reader)
+    #         break
+
     with open(score_sheet_path, "a", encoding="utf-8") as f:
         writer = csv.writer(f)
-
-
-
-
-
-
-
         # the score of filename not exist
         writer.writerow([file_loader.filename, file_loader.student_id, score])
         print(" >> Score recorded !")
@@ -165,6 +156,9 @@ def main():
     total_files_num = len(database)
     idx = 0
 
+    # TODO: Make a 2 new process functions
+    # - "show up all files": to list up files
+    # - "select file": let user to could choose which file to grade 
     # process functions
     process_func_dict = dict(
         compile = compile_file,
@@ -227,7 +221,6 @@ def main():
                     input(" >> Please input valid number. Press 'Enter' go back to main menu")
                     continue
 
-            
             # run the process which user choose
             process_func = process_func_dict[user_input]
             progess_args = process_args_dict[user_input]
