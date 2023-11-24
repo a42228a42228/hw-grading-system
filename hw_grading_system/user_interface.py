@@ -1,7 +1,8 @@
 MODE_UI_DISPLAY_TEXT = """
 =====================================================
-                GRADING     SYSTEM      
+                    MAIN    MENU
 =====================================================
+         ---   {file_idx}  /  {total_files_num}   ---
 - FILENAME: {filename} / FILETYPE: .{file_type}
 - STUDENT ID: {student_id} 
 - MODE:
@@ -10,16 +11,16 @@ MODE_UI_DISPLAY_TEXT = """
     3) Display test result
     4) Display source file
     5) Record score
-    6) Go to next file
 =====================================================
--                 Press 0 to exit                   -
+<- pre file (p)        exit(0)       (n) next file ->
 """
 
 TEST_UI_DISPLAY_TEXT = """
 =====================================================
-                    TEST    MENU   
+                    TEST    MENU
 =====================================================
-- FILENAME: {filename}
+         ---   {file_idx}  /  {total_files_num}   ---
+- FILENAME: {filename} / FILETYPE: .{file_type}
 - STUDENT ID: {student_id} 
 - Avaliable homework name:
     1) [homework 01] 03rd class
@@ -28,7 +29,7 @@ TEST_UI_DISPLAY_TEXT = """
     4) [Assignment] 06th class (Bisection Method)
     5) [Assignment] 06th class (Newton Method)
 =====================================================
--             Press 0 to exit test mode             -
+<- back to main menu (b)
 """
 
 DISPLAY_TEXT_DICT = dict(
@@ -38,7 +39,7 @@ DISPLAY_TEXT_DICT = dict(
 
 MODE_UI_INPUT_TEXT = "\n -> Please input the number of MODE: "
 TEST_UI_INPUT_TEXT = "\n -> Please input the number of homework name: "
-TEST_TYPE_INPUT_TEXT = "\n -> Please choose  1) Auto-test   2) Manual-test  3) back to menu :"
+TEST_TYPE_INPUT_TEXT = "\n -> Please choose  1) Auto-test   2) Manual-test  3) back to test menu :"
 INPUT_TEXT_DICT = dict(
     mode_input = MODE_UI_INPUT_TEXT,
     test_input = TEST_UI_INPUT_TEXT,
@@ -54,14 +55,15 @@ MODE_CHOOSE_DICT = dict(
         ("3", "display_test_result"),
         ("4", "display_source_code"),
         ("5", "record_score"),
-        ("6", "next_file"),
+        ("n", "next_file"),
+        ("p", "pre_file"),
     ]
 )
 
 TESTER_CHOOSE_DICT = dict(
     [
         # avaliable teser for user to choose
-        ("0", "back"),
+        ("b", "back"),
         ("1", "hw-3-1"),
         ("2", "hw-3-2"),
         ("3", "hw-4"),
