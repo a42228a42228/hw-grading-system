@@ -15,6 +15,7 @@ def compile_file(file_loader):
     if file_loader.file_type != "c":
         print(" >> This file can't compile. Please check the file type")
         input(" >> Press 'Enter' go back to main menu")
+        print("\n"*10)
         return
 
     output_file = file_loader.file_path[:-2]
@@ -33,6 +34,7 @@ def compile_file(file_loader):
         print(" >> Compiled successfully")
         file_loader.executable_file_path = output_file
     input(" >> Press 'Enter' go back to main menu")
+    print("\n"*10)
 
 def test(file_loader, tester, ui, total_files_num):
     while True:
@@ -45,6 +47,7 @@ def test(file_loader, tester, ui, total_files_num):
             break
         if test_input == "wrong input":
             input(" >> Please input valid number. Press 'Enter' go back to test menu")
+            print("\n"*10)
             continue
 
         # load test case
@@ -68,6 +71,7 @@ def test(file_loader, tester, ui, total_files_num):
             elif test_type == "back":
                 break
         input(" >> Press 'Enter' go back to test menu")
+        print("\n"*10)
 
 def display_source_code(file_loader):
     try:
@@ -79,6 +83,7 @@ def display_source_code(file_loader):
     except:
         print(" >> Could not display source code")
     input("Press 'Enter' go back to main menu")
+    print("\n"*10)
 
 def display_test_result(file_loader):
     test_result = file_loader.test_result
@@ -89,12 +94,14 @@ def display_test_result(file_loader):
     else:
         print(" >> There's no test result")
     input("Press 'Enter' go back to main menu")
+    print("\n"*10)
 
 def record_score(file_loader, score_sheet_path):
     # aviod wrong input
     score = input(" >> Please enter score (or just press 'Enter' go back to main menu): ")
     if score == "":
         file_loader.score = None
+        print("\n"*10)
         return
     else:
         file_loader.score = score
@@ -121,6 +128,7 @@ def record_score(file_loader, score_sheet_path):
         writer.writerow([file_loader.filename, file_loader.student_id, score])
         print(" >> Score recorded !")
     input("Press 'Enter' go back to main menu")
+    print("\n"*10)
 
 def run(process, kwargs):
     process(**kwargs)
@@ -209,18 +217,20 @@ def main():
                 break
             if user_input == "wrong input":
                 input(" >> Please input valid number. Press 'Enter' go back to main menu")
+                print("\n"*10)
                 continue
             if user_input == "exit":
                 print("\n !!! Warning: Make sure you score all of the file !!!")
                 print(" !!! In this version if you quit in the middle of scoring, you have to restart from first file!!! \n ")
-                exit_check = input(" >> Do you really want to exit? yes(y) / no(n): ")
-                if exit_check == 'y':
+                exit_check = input(" >> Do you really want to exit? (Y / N): ")
+                if exit_check == "y" or exit_check == "Y":
                     print(" >> Exit Successfully")
                     exit()
-                elif exit_check == 'n':
+                elif exit_check == "n" or exit_check == "N":
                     continue
                 else:
                     input(" >> Please input valid number. Press 'Enter' go back to main menu")
+                    print("\n"*10)
                     continue
 
             # run the process which user choose
@@ -242,6 +252,7 @@ def main():
         elif idx < 0:
             print(" >> This is the first file. You can't go previous file")
             input(" >> Press 'Enter' go back to main menu")
+            print("\n"*10)
             idx = 0
 
 if __name__ == '__main__':
