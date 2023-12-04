@@ -1,43 +1,35 @@
 # Homework Grading System
 プログラミング宿題採点用のCLIツール
+個々の宿題を手動コンパイル・テストの手間を減らす
+また、エラー表示とソースコード表示により柔軟な採点に対応できる
 
 ### 機能
 - Ｃプログラムの自動コンパイル
-- プログラムの自動テスト
+- Ｃプログラムの自動テスト
+- エラー表示
 - ソースコードの表示
-- 採点記録
+- 採点記録・出力
 
-## Overview
-
-## Requirement
+## Pre-requisites
+Python >= 3.6
+GNU Compiler (Cプログラムコンパイル用)
 
 ## Getting Started
 
 ### Installation
-
-1. Clone the repo
+リポジトリをクローンしてセットアップする
    ```sh
    git clone https://github.com/a42228a42228/hw-grading-system.git
+   cd hw-grading-system
+   python setup.py
    ```
-2. Setup environment 
-   ```sh
-   python ./hw-grading-system/setup.py
-   ```
-3. Add files into `data/`
-
-
+   
 ## Usage
-
-Run the programe
+1. 採点したいファイルを `data/` に入れる
+2. プログラム実行
    ```sh
    python ./hw-grading-system/hw_grading_system/main.py
    ```
-
-## Features
-
-## Reference
-
-## Author
 
 <!-- [twitter](https://twitter.com/Kotabrog) -->
 
