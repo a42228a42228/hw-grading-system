@@ -16,9 +16,7 @@
 - Python >= 3.6
 - GNU Compiler (Cプログラムコンパイル用)
 
-## Getting Started
-
-### Installation
+## Installation
 リポジトリをクローンしてセットアップする
    ```sh
    git clone https://github.com/a42228a42228/hw-grading-system.git
