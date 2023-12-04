@@ -1,7 +1,9 @@
 # Homework Grading System
 プログラミング宿題採点用のCLIツール
-個々の宿題を手動コンパイル・テストの手間を減らす
-また、エラー表示とソースコード表示により柔軟な採点に対応できる
+
+### 目的
+- 個々の宿題を手動コンパイル・テストの手間を減らす
+- エラー表示とソースコード表示により柔軟な採点に対応する
 
 ### 機能
 - Ｃプログラムの自動コンパイル
@@ -11,8 +13,8 @@
 - 採点記録・出力
 
 ## Pre-requisites
-Python >= 3.6
-GNU Compiler (Cプログラムコンパイル用)
+- Python >= 3.6
+- GNU Compiler (Cプログラムコンパイル用)
 
 ## Getting Started
 
@@ -30,9 +32,3 @@ GNU Compiler (Cプログラムコンパイル用)
    ```sh
    python ./hw-grading-system/hw_grading_system/main.py
    ```
-
-<!-- [twitter](https://twitter.com/Kotabrog) -->
-
-## Licence
-
-<!-- [MIT](https://......) -->
