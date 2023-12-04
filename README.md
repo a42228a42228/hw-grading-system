@@ -28,5 +28,6 @@
 1. 採点したいファイルを `data/` に入れる
 2. プログラム実行
    ```sh
-   python ./hw-grading-system/hw_grading_system/main.py
+   cd hw_grading_system
+   python main.py
    ```
